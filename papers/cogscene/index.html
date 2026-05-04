@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="description"
+        content="CogScene: Cognitive-Driven 3D Scene Understanding from Monocular Video. CVPR 2025 Oral." />
+  <meta name="keywords" content="3D scene understanding, scene graph, cognitive vision, monocular video, CVPR 2025" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CogScene: Cognitive-Driven 3D Scene Understanding from Monocular Video" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cogvis.github.io/papers/cogscene/" />
+  <meta property="og:description"
+        content="CVPR 2025 Oral — CogScene integrates top-down cognitive priors with bottom-up visual features for holistic 3D scene understanding from monocular video." />
+
+  <title>CogScene — CVPR 2025</title>
+
+  <!-- Fonts (same as nerfies / GUAVA template) -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+  <!-- Bulma CSS framework -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+
+  <!-- Academicons -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ---- Nerfies / GUAVA template base styles ---- */
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-links .button {
+      margin: 0.25rem;
+    }
+
+    .author-block {
+      display: inline-block;
+    }
+
+    /* ---- Gradient abbreviation text ---- */
+    .gradient-text {
+      background: linear-gradient(45deg, #6366f1, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    /* ---- Teaser / figure placeholder ---- */
+    .fig-placeholder {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+    .fig-placeholder-inner {
+      text-align: center;
+      padding: 20px;
+    }
+    .fig-placeholder-inner p {
+      color: rgba(255,255,255,.5);
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    /* Teaser gradient */
+    .fig-placeholder.teaser {
+      aspect-ratio: 16 / 5.5;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4338ca 60%, #6366f1 100%);
+    }
+    /* Pipeline gradient */
+    .fig-placeholder.pipeline {
+      aspect-ratio: 16 / 6.5;
+      background: linear-gradient(135deg, #f0f4ff, #e0e7ff, #f5f3ff);
+    }
+    .fig-placeholder.pipeline .fig-placeholder-inner p {
+      color: #64748b;
+    }
+
+    .teaser-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .teaser-block {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-align: center;
+      color: rgba(255,255,255,.9);
+      min-width: 110px;
+    }
+    .teaser-block .icon-big { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+    .teaser-block .label  { font-size: 0.74rem; font-weight: 600; opacity: .85; line-height: 1.3; }
+    .teaser-arrow { font-size: 1.2rem; color: rgba(255,255,255,.35); flex-shrink: 0; }
+
+    /* Pipeline blocks */
+    .pipeline-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 90%;
+    }
+    .pipe-block {
+      flex: 1;
+      background: white;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .pipe-block.highlighted {
+      border-color: #6366f1;
+      background: #eef2ff;
+    }
+    .pipe-block .p-icon { font-size: 1.5rem; margin-bottom: 5px; }
+    .pipe-block .p-name { font-size: 0.7rem; font-weight: 700; color: #1e293b; line-height: 1.3; }
+    .pipe-block .p-sub  { font-size: 0.62rem; color: #64748b; margin-top: 2px; }
+    .pipe-block.highlighted .p-name { color: #4f46e5; }
+    .pipe-conn { width: 24px; flex-shrink: 0; text-align: center; color: #6366f1; font-size: 0.8rem; }
+
+    /* Video placeholder */
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.5);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .video-ph-inner { text-align: center; position: relative; z-index: 1; }
+    .video-ph-inner .play-icon { font-size: 3rem; margin-bottom: 8px; opacity: .4; }
+
+    /* Results table override */
+    .results-table {
+      font-size: 0.9rem;
+    }
+    .results-table thead th {
+      background: #f8fafc;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+    }
+    .results-table tr.ours td {
+      background: #eef2ff;
+      font-weight: 700;
+      color: #4f46e5;
+    }
+    .results-table tr.ours td:first-child {
+      border-left: 3px solid #6366f1;
+    }
+
+    /* BibTeX block */
+    #BibTeX pre {
+      background: #0f172a;
+      color: #a5f3fc;
+      border-radius: 10px;
+      padding: 24px 28px;
+      font-size: 0.87rem;
+      line-height: 1.75;
+      overflow-x: auto;
+    }
+
+    /* Oral badge */
+    .oral-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fef9c3;
+      color: #854d0e;
+      border: 1px solid #fde047;
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    /* Section divider */
+    .section-divider {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 0;
+    }
+
+    /* Nav home link */
+    .navbar-item:hover {
+      background: transparent !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="../../index.html" title="CogVis Lab Home">
+        <span class="icon"><i class="fas fa-home"></i></span>
+        <span style="margin-left:4px; font-size:0.85rem; font-family:'Google Sans',sans-serif; font-weight:600;">
+          CogVis Lab
+        </span>
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" style="font-size:0.85rem;">More</a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="../../people.html">People</a>
+          <a class="navbar-item" href="../../projects.html">Projects</a>
+          <a class="navbar-item" href="../../index.html#publications">All Publications</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO / TITLE ===================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            <span class="gradient-text">CogScene</span>:
+            Cognitive-Driven 3D Scene Understanding<br />
+            from Monocular Video
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="../../people.html">Sofia Rodriguez</a><sup>1*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="../../people.html">James Chen</a><sup>1*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="../../people.html">Priya Sharma</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="../../people.html">Alex Morgan</a><sup>1†</sup>
+            </span>
+            <br />
+            <span class="author-block" style="font-size:0.85em; color:#666;">
+              (* equal contribution &nbsp;·&nbsp; † corresponding author)
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+            <span class="author-block">
+              <sup>1</sup>CogVis Lab, Department of Computer Science, University of Vision Research
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+            <span class="author-block">
+              <b>CVPR 2025</b>
+              <span class="oral-badge">
+                <i class="fa-solid fa-award"></i> Oral Presentation
+              </span>
+            </span>
+          </div>
+
+          <!-- Link buttons -->
+          <div class="column has-text-centered" style="margin-top: 1rem;">
+            <div class="publication-links">
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>CogBench</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-person-chalkboard"></i></span>
+                  <span>Slides</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+          <!-- / Link buttons -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="padding-top: 0;">
+
+      <!-- Replace the div below with: <img src="./static/images/teaser.png" /> -->
+      <div class="fig-placeholder teaser">
+        <div class="teaser-flow">
+          <div class="teaser-block">
+            <span class="icon-big">🎥</span>
+            <span class="label">Monocular<br/>Video Input</span>
+          </div>
+          <div class="teaser-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="teaser-block">
+            <span class="icon-big">🧠</span>
+            <span class="label">Cognitive<br/>Prior Module</span>
+          </div>
+          <div class="teaser-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="teaser-block">
+            <span class="icon-big">🌐</span>
+            <span class="label">3D Semantic<br/>Scene Graph</span>
+          </div>
+          <div class="teaser-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="teaser-block">
+            <span class="icon-big">🤖</span>
+            <span class="label">Embodied<br/>Downstream Tasks</span>
+          </div>
+        </div>
+      </div>
+      <!-- / teaser placeholder -->
+
+      <p style="font-size: 0.85em; margin-top: 1rem; text-align: center; color: #555;">
+        CogScene processes monocular video and produces temporally-consistent 3D semantic scene graphs,
+        enabling object permanence tracking, spatial relation reasoning, and language-guided scene editing —
+        at <strong>60% lower compute</strong> than competing approaches.
+      </p>
+    </div>
+
+    <!-- Abstract -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present <strong>CogScene</strong>, a novel framework for holistic 3D scene understanding
+            that draws inspiration from human cognitive processes. Unlike existing methods that treat
+            geometric reconstruction and semantic understanding as independent tasks, CogScene integrates
+            <em>top-down cognitive priors</em> with <em>bottom-up visual features</em> in a unified
+            architecture. Our method processes monocular video and produces temporally consistent 3D
+            semantic scene graphs that capture object identities, spatial relations, and functional
+            affordances over time.
+          </p>
+          <p>
+            A key insight is that top-down scene expectations — learned from large-scale commonsense
+            knowledge — substantially improve the accuracy and robustness of bottom-up visual parsing
+            under occlusion, motion blur, and illumination changes. CogScene introduces a
+            <em>Cognitive Prior Module (CPM)</em> that iteratively updates scene graph beliefs using
+            a cross-attention mechanism between visual tokens and structured scene hypotheses.
+            Extensive experiments on ScanNet, Replica, and our newly introduced
+            <strong>CogBench</strong> dataset demonstrate state-of-the-art performance across
+            object detection, scene graph generation, and tracking metrics, while requiring
+            <strong>60% less computation</strong> than competing approaches.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- / Abstract -->
+
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ===================== VIDEO DEMO ===================== -->
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Video Demo</h2>
+      <div class="content has-text-justified">
+        <hr style="margin-top: 0;" />
+      </div>
+
+      <!-- Replace src with actual YouTube embed URL -->
+      <iframe width="100%" height="500"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="CogScene Video Demo"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        style="border-radius: 8px;">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ===================== RESULTS / VISUALISATIONS ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content has-text-justified">
+
+          <!-- 3D Scene Graph Prediction -->
+          <h3 class="title is-4 has-text-centered">3D Scene Graph Prediction</h3>
+          <div class="content has-text-centered">
+            <!-- Replace with: <video controls muted preload playsinline autoplay loop width="100%">
+                               <source src="./static/videos/scene-graph-pred.mp4" type="video/mp4">
+                             </video> -->
+            <div class="video-placeholder">
+              <div class="video-ph-inner">
+                <div class="play-icon"><i class="fa-solid fa-circle-play"></i></div>
+                <div>scene-graph-pred.mp4 · Replace with actual video</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Object Tracking Under Occlusion -->
+          <h3 class="title is-4 has-text-centered">Object Permanence Tracking</h3>
+          <div class="content has-text-centered">
+            <div class="video-placeholder">
+              <div class="video-ph-inner">
+                <div class="play-icon"><i class="fa-solid fa-circle-play"></i></div>
+                <div>object-tracking.mp4 · Replace with actual video</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Language-Guided Scene Editing -->
+          <h3 class="title is-4 has-text-centered">Language-Guided Scene Editing</h3>
+          <div class="content has-text-centered">
+            <div class="video-placeholder">
+              <div class="video-ph-inner">
+                <div class="play-icon"><i class="fa-solid fa-circle-play"></i></div>
+                <div>language-editing.mp4 · Replace with actual video</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparison with Baselines -->
+          <h3 class="title is-4 has-text-centered">Comparison with State-of-the-Art Methods</h3>
+          <div class="content has-text-centered">
+            <div class="video-placeholder">
+              <div class="video-ph-inner">
+                <div class="play-icon"><i class="fa-solid fa-circle-play"></i></div>
+                <div>comparison-baselines.mp4 · Replace with actual video</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ===================== QUANTITATIVE RESULTS ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <div class="content has-text-justified">
+
+          <p><strong>3D Object Detection on ScanNet v2.</strong>
+            CogScene outperforms all baselines on mAP@25 and mAP@50 while maintaining real-time throughput.</p>
+
+          <div style="overflow-x: auto;">
+            <table class="table is-fullwidth is-striped is-hoverable results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Venue</th>
+                  <th>mAP@25 ↑</th>
+                  <th>mAP@50 ↑</th>
+                  <th>FPS ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>VoteNet</td><td>ICCV 2019</td><td>58.6</td><td>35.8</td><td>22</td></tr>
+                <tr><td>3DETR</td><td>ICCV 2021</td><td>65.0</td><td>47.0</td><td>18</td></tr>
+                <tr><td>Mask3D</td><td>RA-L 2023</td><td>73.7</td><td>55.2</td><td>8</td></tr>
+                <tr><td>MonoScene</td><td>CVPR 2024</td><td>74.2</td><td>56.8</td><td>14</td></tr>
+                <tr class="ours">
+                  <td><strong>CogScene (Ours)</strong></td>
+                  <td>CVPR 2025</td>
+                  <td><strong>78.9</strong></td>
+                  <td><strong>62.3</strong></td>
+                  <td><strong>21</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin-top: 1.5rem;"><strong>Scene Graph Generation on CogBench.</strong>
+            CogScene achieves a 37% relative gain in mean recall at 60% fewer FLOPs.</p>
+
+          <div style="overflow-x: auto;">
+            <table class="table is-fullwidth is-striped is-hoverable results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>R@20 ↑</th>
+                  <th>R@50 ↑</th>
+                  <th>mR@50 ↑</th>
+                  <th>GFLOPs ↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>EGTR</td><td>34.2</td><td>48.7</td><td>22.1</td><td>482</td></tr>
+                <tr><td>VS3</td><td>38.6</td><td>52.3</td><td>26.8</td><td>610</td></tr>
+                <tr><td>SGGFormer</td><td>41.0</td><td>55.9</td><td>29.4</td><td>744</td></tr>
+                <tr class="ours">
+                  <td><strong>CogScene (Ours)</strong></td>
+                  <td><strong>47.8</strong></td>
+                  <td><strong>63.2</strong></td>
+                  <td><strong>36.1</strong></td>
+                  <td><strong>298</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ===================== METHOD ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div class="hero-body" style="padding: 1rem 0;">
+
+            <!-- Replace with: <img src="./static/images/pipeline.png" style="width:100%;max-width:100%;" /> -->
+            <div class="fig-placeholder pipeline">
+              <div class="pipeline-flow">
+                <div class="pipe-block">
+                  <div class="p-icon">🎥</div>
+                  <div class="p-name">Video<br/>Backbone</div>
+                  <div class="p-sub">Video Swin-L<br/>Temporal Attn</div>
+                </div>
+                <div class="pipe-conn"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="pipe-block highlighted">
+                  <div class="p-icon">🧠</div>
+                  <div class="p-name">Cognitive<br/>Prior Module</div>
+                  <div class="p-sub">CPM<br/>Cross-attention</div>
+                </div>
+                <div class="pipe-conn"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="pipe-block">
+                  <div class="p-icon">🗂️</div>
+                  <div class="p-name">Scene Graph<br/>Decoder</div>
+                  <div class="p-sub">Objects + Relations<br/>+ Affordances</div>
+                </div>
+                <div class="pipe-conn"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="pipe-block">
+                  <div class="p-icon">🌐</div>
+                  <div class="p-name">3D Semantic<br/>Scene Graph</div>
+                  <div class="p-sub">Temporally<br/>Consistent</div>
+                </div>
+              </div>
+            </div>
+            <!-- / pipeline placeholder -->
+
+            <p style="font-size: 0.85em; margin-top: 1rem;">
+              CogScene architecture overview. Given monocular video, a video backbone extracts spatiotemporal
+              features. The <strong>Cognitive Prior Module (CPM)</strong> (highlighted) iteratively refines
+              scene graph beliefs via cross-attention between visual tokens and structured scene hypotheses
+              drawn from a commonsense knowledge base. A lightweight decoder produces 3D bounding boxes,
+              semantic labels, and pairwise relation logits per frame, enforced to be temporally consistent.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code id="bibtex-code">@inproceedings{rodriguez2025cogscene,
+  title     = {CogScene: Cognitive-Driven 3D Scene Understanding
+               from Monocular Video},
+  author    = {Rodriguez, Sofia and Chen, James and
+               Sharma, Priya and Morgan, Alex},
+  booktitle = {Proceedings of the IEEE/CVF Conference on
+               Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2025},
+  note      = {Oral Presentation}
+}</code></pre>
+    <button class="button is-small is-light" id="copy-bibtex" style="margin-top: -0.5rem;">
+      <span class="icon is-small"><i class="fas fa-copy"></i></span>
+      <span>Copy</span>
+    </button>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content" style="text-align: center;">
+          <p>
+            This website is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              Creative Commons Attribution-ShareAlike 4.0 International License
+            </a>.
+          </p>
+          <p>
+            Page template adapted from
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            We thank the authors for sharing the template.
+            &nbsp;·&nbsp;
+            <a href="../../index.html">CogVis Lab</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* BibTeX copy button */
+  document.getElementById('copy-bibtex').addEventListener('click', function () {
+    var text = document.getElementById('bibtex-code').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      var btn = document.getElementById('copy-bibtex');
+      btn.querySelector('span:last-child').textContent = 'Copied!';
+      setTimeout(function () {
+        btn.querySelector('span:last-child').textContent = 'Copy';
+      }, 2000);
+    });
+  });
+
+  /* Navbar burger toggle */
+  document.addEventListener('DOMContentLoaded', function () {
+    var burger = document.querySelector('.navbar-burger');
+    var menu   = document.querySelector('.navbar-menu');
+    if (burger && menu) {
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

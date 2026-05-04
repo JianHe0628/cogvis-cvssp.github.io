@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — CogVis Lab</title>
+  <meta name="description" content="Ongoing and completed research projects from the CogVis Cognitive Vision Laboratory." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .project-thumb-a { background: linear-gradient(135deg, #312e81, #6366f1, #818cf8); }
+    .project-thumb-b { background: linear-gradient(135deg, #065f46, #059669, #34d399); }
+    .project-thumb-c { background: linear-gradient(135deg, #92400e, #d97706, #fbbf24); }
+    .project-thumb-d { background: linear-gradient(135deg, #9f1239, #e11d48, #fb7185); }
+    .project-thumb-e { background: linear-gradient(135deg, #0c4a6e, #0284c7, #38bdf8); }
+    .project-thumb-f { background: linear-gradient(135deg, #4a044e, #a21caf, #e879f9); }
+
+    .project-thumb-sm-a { background: linear-gradient(135deg, #1e1b4b, #4f46e5); }
+    .project-thumb-sm-b { background: linear-gradient(135deg, #064e3b, #10b981); }
+
+    /* Floating figure numbers in project thumbs */
+    .thumb-fig {
+      color: rgba(255,255,255,.14);
+      font-size: 6rem;
+      font-weight: 900;
+      line-height: 1;
+      position: absolute;
+      right: 16px;
+      bottom: -8px;
+      letter-spacing: -0.06em;
+      user-select: none;
+    }
+    .project-thumb { position: relative; }
+    .thumb-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 3rem;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
+
+    /* Funding badges */
+    .funding-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .funding-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 2px 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="cog">Cog</span><span class="vis">Vis</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="index.html#publications">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ========== PAGE HEADER ========== -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <span class="page-header-eyebrow">Research</span>
+    <h1>Projects</h1>
+    <p>
+      From core vision fundamentals to real-world applications in healthcare and robotics —
+      explore our ongoing and past research initiatives.
+    </p>
+  </div>
+</header>
+
+<!-- ========== ONGOING PROJECTS ========== -->
+<main>
+<section class="section">
+<div class="container">
+
+  <div class="section-header">
+    <span class="section-eyebrow">Current</span>
+    <h2 class="section-title">Ongoing Projects</h2>
+    <p class="section-desc">
+      Active research programs with open questions and upcoming results.
+    </p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-thumb project-thumb-a">
+        <div class="thumb-fig">01</div>
+        <span class="thumb-icon">🌐</span>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div class="project-title">4D Gaussian World Models for Dynamic Scene Understanding</div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <p class="project-desc">
+          We extend 3D Gaussian splatting to the temporal domain to build compact,
+          editable 4D representations of dynamic scenes. The resulting world models
+          support downstream tasks including object tracking, novel-view synthesis
+          under motion, and physical scene simulation with minimal supervision.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">3D Gaussian Splatting</span>
+          <span class="project-tag">Neural Rendering</span>
+          <span class="project-tag">Dynamic Scenes</span>
+          <span class="project-tag">CVPR 2026 target</span>
+        </div>
+        <div class="project-foot">
+          <div>
+            <div class="funding-strip">
+              <span class="funding-tag">NSF IIS-2341022</span>
+              <span class="funding-tag">Google Research Award</span>
+            </div>
+            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
+              Sofia Rodriguez · Elena Baranova · Priya Sharma
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm">
+            <i class="fa-brands fa-github"></i> Repo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-thumb project-thumb-b">
+        <div class="thumb-fig">02</div>
+        <span class="thumb-icon">🤖</span>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div class="project-title">Embodied Vision-Language Agents for Open-World Navigation</div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <p class="project-desc">
+          We develop language-grounded embodied agents capable of navigating complex
+          indoor and outdoor environments using natural language instructions. Our agents
+          leverage vision-language models for zero-shot affordance prediction and build
+          persistent spatial memory to reason about previously-seen objects.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Embodied AI</span>
+          <span class="project-tag">VLMs</span>
+          <span class="project-tag">Navigation</span>
+          <span class="project-tag">Spatial Reasoning</span>
+        </div>
+        <div class="project-foot">
+          <div>
+            <div class="funding-strip">
+              <span class="funding-tag">NSF RI-2246801</span>
+              <span class="funding-tag">DARPA SAIL-ON</span>
+            </div>
+            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
+              Marcus Kim · Sofia Rodriguez · Daniel Park
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm">
+            <i class="fa-brands fa-github"></i> Repo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-thumb project-thumb-c">
+        <div class="thumb-fig">03</div>
+        <span class="thumb-icon">🎬</span>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div class="project-title">Long-Horizon Temporal Understanding of Instructional Video</div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <p class="project-desc">
+          Reasoning about hour-long instructional videos requires understanding causal
+          chains, tracking state changes, and predicting procedural next steps. We build
+          hierarchical temporal models trained with weak procedural supervision from
+          online tutorial data at massive scale.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Video Understanding</span>
+          <span class="project-tag">Temporal Reasoning</span>
+          <span class="project-tag">Procedural AI</span>
+        </div>
+        <div class="project-foot">
+          <div>
+            <div class="funding-strip">
+              <span class="funding-tag">Microsoft Research</span>
+            </div>
+            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
+              Marcus Kim · Yuki Tanaka
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm">
+            <i class="fa-brands fa-github"></i> Repo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card">
+      <div class="project-thumb project-thumb-d">
+        <div class="thumb-fig">04</div>
+        <span class="thumb-icon">🔬</span>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div class="project-title">Geometric Depth and Tissue Segmentation for Surgical AI</div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <p class="project-desc">
+          Real-time 3D understanding of surgical scenes can dramatically improve
+          robot-assisted procedures. We develop self-supervised monocular depth
+          estimation and tissue-aware semantic segmentation tailored to the
+          challenging photometric conditions of endoscopic imaging.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Medical Vision</span>
+          <span class="project-tag">Depth Estimation</span>
+          <span class="project-tag">Surgical AI</span>
+        </div>
+        <div class="project-foot">
+          <div>
+            <div class="funding-strip">
+              <span class="funding-tag">NIH R01-EB033456</span>
+            </div>
+            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
+              Yuki Tanaka · Priya Sharma · James Chen
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm">
+            <i class="fa-brands fa-github"></i> Repo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card">
+      <div class="project-thumb project-thumb-e">
+        <div class="thumb-fig">05</div>
+        <span class="thumb-icon">🧠</span>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div class="project-title">Open-Vocabulary 3D Object Understanding at Scale</div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <p class="project-desc">
+          We distill knowledge from 2D vision-language foundation models into 3D scene
+          representations, enabling open-vocabulary 3D object grounding, part
+          segmentation, and attribute prediction without 3D-specific annotation.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Vision-Language</span>
+          <span class="project-tag">3D Understanding</span>
+          <span class="project-tag">Open-Vocabulary</span>
+        </div>
+        <div class="project-foot">
+          <div>
+            <div class="funding-strip">
+              <span class="funding-tag">Samsung Research</span>
+            </div>
+            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
+              Daniel Park · James Chen · Alex Morgan
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm">
+            <i class="fa-brands fa-github"></i> Repo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project-card">
+      <div class="project-thumb project-thumb-f">
+        <div class="thumb-fig">06</div>
+        <span class="thumb-icon">✨</span>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div class="project-title">Cognitive Priors for Few-Shot Visual Scene Completion</div>
+          <span class="badge badge-amber">Starting</span>
+        </div>
+        <p class="project-desc">
+          Humans fill in occluded regions of scenes effortlessly using learned
+          cognitive priors. We investigate how similar priors can be instilled
+          in neural networks to enable robust scene completion and object
+          permanence reasoning from just a handful of observations.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Scene Completion</span>
+          <span class="project-tag">Object Permanence</span>
+          <span class="project-tag">Few-Shot Learning</span>
+        </div>
+        <div class="project-foot">
+          <div>
+            <div class="funding-strip">
+              <span class="funding-tag">NSF CAREER Award</span>
+            </div>
+            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
+              Elena Baranova · Alex Morgan
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm" style="visibility:hidden;">TBA</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ---- COMPLETED PROJECTS ---- -->
+  <div class="section-header" style="margin-top:80px;">
+    <span class="section-eyebrow">Completed</span>
+    <h2 class="section-title">Prior Projects</h2>
+    <p class="section-desc">
+      Projects that have concluded, with released datasets, code, and papers.
+    </p>
+  </div>
+
+  <div class="projects-grid-2">
+
+    <div class="project-row">
+      <div class="project-row-thumb project-thumb-sm-a" style="font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">🏃</div>
+      <div class="project-row-info">
+        <div class="project-row-title">Action Recognition in Unconstrained Environments</div>
+        <p class="project-row-desc">
+          A large-scale benchmark and baseline for fine-grained action recognition in
+          challenging real-world conditions including motion blur, low-light, and occlusion.
+        </p>
+        <div class="project-row-meta">
+          <span class="badge badge-gray">Completed 2023</span>
+          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Lena Fischer</span>
+          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code &amp; Dataset</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <div class="project-row-thumb project-thumb-sm-b" style="font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">🩺</div>
+      <div class="project-row-info">
+        <div class="project-row-title">Colonoscopy Polyp Detection and Localisation</div>
+        <p class="project-row-desc">
+          Real-time polyp detection with calibrated uncertainty for clinical decision support,
+          achieving sensitivity above 96% on the CVC-ClinicDB benchmark.
+        </p>
+        <div class="project-row-meta">
+          <span class="badge badge-gray">Completed 2023</span>
+          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Omar Hassan</span>
+          <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> Paper</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <div class="project-row-thumb" style="background:linear-gradient(135deg,#3b0764,#9333ea);font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">👁️</div>
+      <div class="project-row-info">
+        <div class="project-row-title">Gaze-Driven Saliency Prediction for UI/UX</div>
+        <p class="project-row-desc">
+          A computational model predicting where users look on screen, enabling
+          automated usability testing and accessibility evaluation of web interfaces.
+        </p>
+        <div class="project-row-meta">
+          <span class="badge badge-gray">Completed 2022</span>
+          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Kevin Liu</span>
+          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <div class="project-row-thumb" style="background:linear-gradient(135deg,#1c1917,#78716c);font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">🗺️</div>
+      <div class="project-row-info">
+        <div class="project-row-title">Semantic Mapping for Long-Horizon Robot Planning</div>
+        <p class="project-row-desc">
+          Online construction of language-annotated 3D maps that support natural language
+          queries for household robots operating over multi-hour deployments.
+        </p>
+        <div class="project-row-meta">
+          <span class="badge badge-gray">Completed 2022</span>
+          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Rita Patel</span>
+          <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> Paper</a>
+          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="cog">Cog</span><span class="vis">Vis</span></div>
+        <p class="footer-desc">Cognitive Vision Research Laboratory<br />Department of Computer Science<br />University of Vision Research</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="people.html">People</a>
+          <a href="projects.html">Projects</a>
+          <a href="index.html#publications">Publications</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <a href="mailto:cogvis@cs.uvr.edu">cogvis@cs.uvr.edu</a>
+          <a href="#">Office: Gates 321</a>
+          <a href="#" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="#" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 CogVis Lab.</span>
+      <span class="footer-copy">University of Vision Research</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
