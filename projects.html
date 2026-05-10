@@ -4,47 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — CogVis Lab</title>
-  <meta name="description" content="Ongoing and completed research projects from the CogVis Cognitive Vision Laboratory." />
+  <meta name="description" content="Sign language research projects from the CogVis Group — translation, production, recognition, and accessibility." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    .project-thumb-a { background: linear-gradient(135deg, #312e81, #6366f1, #818cf8); }
-    .project-thumb-b { background: linear-gradient(135deg, #065f46, #059669, #34d399); }
-    .project-thumb-c { background: linear-gradient(135deg, #92400e, #d97706, #fbbf24); }
-    .project-thumb-d { background: linear-gradient(135deg, #9f1239, #e11d48, #fb7185); }
-    .project-thumb-e { background: linear-gradient(135deg, #0c4a6e, #0284c7, #38bdf8); }
-    .project-thumb-f { background: linear-gradient(135deg, #4a044e, #a21caf, #e879f9); }
+    /* ── Full-width project entry ── */
+    .proj-list { display: flex; flex-direction: column; gap: 16px; }
 
-    .project-thumb-sm-a { background: linear-gradient(135deg, #1e1b4b, #4f46e5); }
-    .project-thumb-sm-b { background: linear-gradient(135deg, #064e3b, #10b981); }
-
-    /* Floating figure numbers in project thumbs */
-    .thumb-fig {
-      color: rgba(255,255,255,.14);
-      font-size: 6rem;
-      font-weight: 900;
-      line-height: 1;
-      position: absolute;
-      right: 16px;
-      bottom: -8px;
-      letter-spacing: -0.06em;
-      user-select: none;
+    .proj-entry {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      transition: box-shadow var(--transition), border-color var(--transition);
     }
-    .project-thumb { position: relative; }
-    .thumb-icon {
-      position: relative;
-      z-index: 1;
-      font-size: 3rem;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    .proj-entry:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gray-400);
     }
 
+    .proj-accent { width: 5px; flex-shrink: 0; }
+    .accent-1 { background: #0a0a0a; }
+    .accent-2 { background: #4285f4; }
+    .accent-3 { background: #1f1f1f; }
+    .accent-4 { background: #2d7d46; }
+    .accent-past { background: #c0c0c0; }
+
+    .proj-content { padding: 28px 36px; flex: 1; }
+
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .proj-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .proj-funder {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .proj-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 18px;
+      max-width: 90ch;
+    }
+    .proj-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     /* Funding badges */
     .funding-strip {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 6px;
     }
     .funding-tag {
       font-size: 0.7rem;
@@ -55,6 +82,16 @@
       border-radius: 100px;
       padding: 2px 10px;
     }
+    .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .project-tag {
+      padding: 3px 9px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 100px;
+      font-size: 0.7rem;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -62,8 +99,9 @@
 <!-- ========== NAV ========== -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <span class="cog">Cog</span><span class="vis">Vis</span>
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;">
+      <img src="assets/cogvis.jpg" alt="CogVis logo" style="height:36px;width:auto;">
+      <span><span class="cog">Cog</span><span class="vis">Vis</span></span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -72,7 +110,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="people.html">People</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="index.html#publications">Publications</a></li>
+      <li><a href="publications.html">Publications</a></li>
     </ul>
   </div>
 </nav>
@@ -83,330 +121,270 @@
     <span class="page-header-eyebrow">Research</span>
     <h1>Projects</h1>
     <p>
-      From core vision fundamentals to real-world applications in healthcare and robotics —
-      explore our ongoing and past research initiatives.
+      From gloss-free translation to avatar-driven sign production —
+      explore our ongoing and past sign language research initiatives.
     </p>
   </div>
 </header>
 
-<!-- ========== ONGOING PROJECTS ========== -->
+<!-- ========== PROJECTS ========== -->
 <main>
 <section class="section">
 <div class="container">
 
+  <!-- ---- Active ---- -->
   <div class="section-header">
     <span class="section-eyebrow">Current</span>
     <h2 class="section-title">Ongoing Projects</h2>
-    <p class="section-desc">
-      Active research programs with open questions and upcoming results.
-    </p>
+    <p class="section-desc">Active research programmes with open questions and upcoming results.</p>
   </div>
 
-  <div class="projects-grid">
+  <div class="proj-list">
 
-    <!-- Project 1 -->
-    <div class="project-card">
-      <div class="project-thumb project-thumb-a">
-        <div class="thumb-fig">01</div>
-        <span class="thumb-icon">🌐</span>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
-          <div class="project-title">4D Gaussian World Models for Dynamic Scene Understanding</div>
+    <!-- SignGPT -->
+    <div class="proj-entry">
+      <div class="proj-accent accent-1"></div>
+      <div class="proj-content">
+        <div class="proj-header">
+          <div>
+            <div class="proj-name">SignGPT</div>
+            <div class="proj-funder">UKRI EPSRC Programme Grant</div>
+          </div>
           <span class="badge badge-green">Active</span>
         </div>
-        <p class="project-desc">
-          We extend 3D Gaussian splatting to the temporal domain to build compact,
-          editable 4D representations of dynamic scenes. The resulting world models
-          support downstream tasks including object tracking, novel-view synthesis
-          under motion, and physical scene simulation with minimal supervision.
+        <p class="proj-desc">
+          SignGPT is a UKRI EPSRC Programme Grant focused on the development of an AI-powered translation
+          system capable of unconstrained, bidirectional translation between British Sign Language (BSL)
+          and English. The project will build the first generative predictive transformer for sign language,
+          combining computer vision, sign linguistics, and machine learning. It is led by an interdisciplinary
+          team from the University of Surrey, University of Oxford, and University College London, with
+          direct involvement from Deaf organisations and community partners.
         </p>
         <div class="project-tags">
-          <span class="project-tag">3D Gaussian Splatting</span>
-          <span class="project-tag">Neural Rendering</span>
-          <span class="project-tag">Dynamic Scenes</span>
-          <span class="project-tag">CVPR 2026 target</span>
+          <span class="project-tag">BSL ↔ English Translation</span>
+          <span class="project-tag">Generative Transformers</span>
+          <span class="project-tag">Sign Linguistics</span>
+          <span class="project-tag">Computer Vision</span>
+          <span class="project-tag">Deaf Community</span>
         </div>
-        <div class="project-foot">
-          <div>
-            <div class="funding-strip">
-              <span class="funding-tag">NSF IIS-2341022</span>
-              <span class="funding-tag">Google Research Award</span>
-            </div>
-            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
-              Sofia Rodriguez · Elena Baranova · Priya Sharma
-            </div>
+        <div class="proj-foot">
+          <div class="funding-strip">
+            <span class="funding-tag">UKRI EPSRC</span>
+            <span class="funding-tag">University of Surrey</span>
+            <span class="funding-tag">University of Oxford</span>
+            <span class="funding-tag">UCL</span>
           </div>
-          <a href="#" class="btn btn-outline btn-sm">
-            <i class="fa-brands fa-github"></i> Repo
-          </a>
+          <a href="https://sites.google.com/view/signgpt/home?authuser=0" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Project Page</a>
         </div>
       </div>
     </div>
 
-    <!-- Project 2 -->
-    <div class="project-card">
-      <div class="project-thumb project-thumb-b">
-        <div class="thumb-fig">02</div>
-        <span class="thumb-icon">🤖</span>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
-          <div class="project-title">Embodied Vision-Language Agents for Open-World Navigation</div>
+    <!-- Google AI Grant -->
+    <div class="proj-entry">
+      <div class="proj-accent accent-2"></div>
+      <div class="proj-content">
+        <div class="proj-header">
+          <div>
+            <div class="proj-name">Google AI Grant</div>
+            <div class="proj-funder">Google.org Philanthropic Grant</div>
+          </div>
           <span class="badge badge-green">Active</span>
         </div>
-        <p class="project-desc">
-          We develop language-grounded embodied agents capable of navigating complex
-          indoor and outdoor environments using natural language instructions. Our agents
-          leverage vision-language models for zero-shot affordance prediction and build
-          persistent spatial memory to reason about previously-seen objects.
+        <p class="proj-desc">
+          Grant funding and additional support from Google's philanthropic arm, Google.org, to develop
+          artificial intelligence research paving the way for instant sign language translation. Working
+          with Signapse as a delivery partner, the project translates key websites into sign language,
+          boosting digital inclusion for the 600,000 Deaf people in the US and UK for whom sign language
+          is their first language.
         </p>
         <div class="project-tags">
-          <span class="project-tag">Embodied AI</span>
-          <span class="project-tag">VLMs</span>
-          <span class="project-tag">Navigation</span>
-          <span class="project-tag">Spatial Reasoning</span>
+          <span class="project-tag">Instant SL Translation</span>
+          <span class="project-tag">Digital Inclusion</span>
+          <span class="project-tag">Web Accessibility</span>
+          <span class="project-tag">BSL · ASL</span>
         </div>
-        <div class="project-foot">
-          <div>
-            <div class="funding-strip">
-              <span class="funding-tag">NSF RI-2246801</span>
-              <span class="funding-tag">DARPA SAIL-ON</span>
-            </div>
-            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
-              Marcus Kim · Sofia Rodriguez · Daniel Park
-            </div>
+        <div class="proj-foot">
+          <div class="funding-strip">
+            <span class="funding-tag">Google.org</span>
+            <span class="funding-tag">Signapse AI (delivery partner)</span>
           </div>
-          <a href="#" class="btn btn-outline btn-sm">
-            <i class="fa-brands fa-github"></i> Repo
-          </a>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Project Page</a>
         </div>
       </div>
     </div>
-
-    <!-- Project 3 -->
-    <div class="project-card">
-      <div class="project-thumb project-thumb-c">
-        <div class="thumb-fig">03</div>
-        <span class="thumb-icon">🎬</span>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
-          <div class="project-title">Long-Horizon Temporal Understanding of Instructional Video</div>
-          <span class="badge badge-green">Active</span>
-        </div>
-        <p class="project-desc">
-          Reasoning about hour-long instructional videos requires understanding causal
-          chains, tracking state changes, and predicting procedural next steps. We build
-          hierarchical temporal models trained with weak procedural supervision from
-          online tutorial data at massive scale.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Video Understanding</span>
-          <span class="project-tag">Temporal Reasoning</span>
-          <span class="project-tag">Procedural AI</span>
-        </div>
-        <div class="project-foot">
-          <div>
-            <div class="funding-strip">
-              <span class="funding-tag">Microsoft Research</span>
-            </div>
-            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
-              Marcus Kim · Yuki Tanaka
-            </div>
-          </div>
-          <a href="#" class="btn btn-outline btn-sm">
-            <i class="fa-brands fa-github"></i> Repo
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project 4 -->
-    <div class="project-card">
-      <div class="project-thumb project-thumb-d">
-        <div class="thumb-fig">04</div>
-        <span class="thumb-icon">🔬</span>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
-          <div class="project-title">Geometric Depth and Tissue Segmentation for Surgical AI</div>
-          <span class="badge badge-green">Active</span>
-        </div>
-        <p class="project-desc">
-          Real-time 3D understanding of surgical scenes can dramatically improve
-          robot-assisted procedures. We develop self-supervised monocular depth
-          estimation and tissue-aware semantic segmentation tailored to the
-          challenging photometric conditions of endoscopic imaging.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Medical Vision</span>
-          <span class="project-tag">Depth Estimation</span>
-          <span class="project-tag">Surgical AI</span>
-        </div>
-        <div class="project-foot">
-          <div>
-            <div class="funding-strip">
-              <span class="funding-tag">NIH R01-EB033456</span>
-            </div>
-            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
-              Yuki Tanaka · Priya Sharma · James Chen
-            </div>
-          </div>
-          <a href="#" class="btn btn-outline btn-sm">
-            <i class="fa-brands fa-github"></i> Repo
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project 5 -->
-    <div class="project-card">
-      <div class="project-thumb project-thumb-e">
-        <div class="thumb-fig">05</div>
-        <span class="thumb-icon">🧠</span>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
-          <div class="project-title">Open-Vocabulary 3D Object Understanding at Scale</div>
-          <span class="badge badge-green">Active</span>
-        </div>
-        <p class="project-desc">
-          We distill knowledge from 2D vision-language foundation models into 3D scene
-          representations, enabling open-vocabulary 3D object grounding, part
-          segmentation, and attribute prediction without 3D-specific annotation.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Vision-Language</span>
-          <span class="project-tag">3D Understanding</span>
-          <span class="project-tag">Open-Vocabulary</span>
-        </div>
-        <div class="project-foot">
-          <div>
-            <div class="funding-strip">
-              <span class="funding-tag">Samsung Research</span>
-            </div>
-            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
-              Daniel Park · James Chen · Alex Morgan
-            </div>
-          </div>
-          <a href="#" class="btn btn-outline btn-sm">
-            <i class="fa-brands fa-github"></i> Repo
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project 6 -->
-    <div class="project-card">
-      <div class="project-thumb project-thumb-f">
-        <div class="thumb-fig">06</div>
-        <span class="thumb-icon">✨</span>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
-          <div class="project-title">Cognitive Priors for Few-Shot Visual Scene Completion</div>
-          <span class="badge badge-amber">Starting</span>
-        </div>
-        <p class="project-desc">
-          Humans fill in occluded regions of scenes effortlessly using learned
-          cognitive priors. We investigate how similar priors can be instilled
-          in neural networks to enable robust scene completion and object
-          permanence reasoning from just a handful of observations.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Scene Completion</span>
-          <span class="project-tag">Object Permanence</span>
-          <span class="project-tag">Few-Shot Learning</span>
-        </div>
-        <div class="project-foot">
-          <div>
-            <div class="funding-strip">
-              <span class="funding-tag">NSF CAREER Award</span>
-            </div>
-            <div style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">
-              Elena Baranova · Alex Morgan
-            </div>
-          </div>
-          <a href="#" class="btn btn-outline btn-sm" style="visibility:hidden;">TBA</a>
-        </div>
-      </div>
-    </div>
-
+    
   </div>
 
-  <!-- ---- COMPLETED PROJECTS ---- -->
-  <div class="section-header" style="margin-top:80px;">
+  <!-- ---- Completed ---- -->
+  <div class="section-header" style="margin-top: 80px;">
     <span class="section-eyebrow">Completed</span>
     <h2 class="section-title">Prior Projects</h2>
-    <p class="section-desc">
-      Projects that have concluded, with released datasets, code, and papers.
-    </p>
+    <p class="section-desc">Projects that have concluded, with released datasets, code, and papers.</p>
   </div>
 
-  <div class="projects-grid-2">
+  <div class="proj-list">
+    
+        <!-- IICT Flagship -->
+        <div class="proj-entry">
+          <div class="proj-accent accent-3"></div>
+          <div class="proj-content">
+            <div class="proj-header">
+              <div>
+                <div class="proj-name">IICT Flagship</div>
+                <div class="proj-funder">Swiss National Funded Flagship Project</div>
+              </div>
+              <span class="badge badge-green">Finishing</span>
+            </div>
+            <p class="proj-desc">
+              The goal of the IICT Flagship is to develop information and communication technologies (ICT)
+              for persons with disabilities. The flagship targets five applications in the context of
+              accessibility: text simplification, sign language translation, sign language assessment,
+              audio description, and spoken subtitles. Each application constitutes its own subproject,
+              with tight connections through shared AI technologies. The University of Surrey is included
+              due to its extensive expertise in AI for sign languages.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Sign Language Translation</span>
+              <span class="project-tag">Sign Language Assessment</span>
+              <span class="project-tag">Text Simplification</span>
+              <span class="project-tag">Audio Description</span>
+              <span class="project-tag">Spoken Subtitles</span>
+              <span class="project-tag">Accessibility</span>
+            </div>
+            <div class="proj-foot">
+              <div class="funding-strip">
+                <span class="funding-tag">Swiss National Funding</span>
+                <span class="funding-tag">University of Surrey</span>
+              </div>
+              <a href="#" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Project Page</a>
+            </div>
+          </div>
+        </div>
+    
+        <!-- SMILE -->
+        <div class="proj-entry">
+          <div class="proj-accent accent-4"></div>
+          <div class="proj-content">
+            <div class="proj-header">
+              <div>
+                <div class="proj-name">SMILE</div>
+                <div class="proj-funder">Swiss Funded Research Project</div>
+              </div>
+              <span class="badge badge-green">Finishing</span>
+            </div>
+            <p class="proj-desc">
+              The goal of SMILE is to pioneer an assessment system for Swiss German Sign Language
+              (Deutschschweizerische Gebärdensprache, DSGS) using automatic sign language recognition
+              technology. The project develops robust recognition models tailored to DSGS and integrates
+              them into a learner assessment framework to support Deaf education and sign language acquisition.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Swiss German Sign Language (DSGS)</span>
+              <span class="project-tag">Sign Language Recognition</span>
+              <span class="project-tag">Learner Assessment</span>
+              <span class="project-tag">Deaf Education</span>
+            </div>
+            <div class="proj-foot">
+              <div class="funding-strip">
+                <span class="funding-tag">Swiss National Funding</span>
+              </div>
+              <a href="#" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Project Page</a>
+            </div>
+          </div>
+        </div>
 
-    <div class="project-row">
-      <div class="project-row-thumb project-thumb-sm-a" style="font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">🏃</div>
-      <div class="project-row-info">
-        <div class="project-row-title">Action Recognition in Unconstrained Environments</div>
-        <p class="project-row-desc">
-          A large-scale benchmark and baseline for fine-grained action recognition in
-          challenging real-world conditions including motion blur, low-light, and occlusion.
+    <!-- Learning to Recognise -->
+    <div class="proj-entry">
+      <div class="proj-accent accent-past"></div>
+      <div class="proj-content">
+        <div class="proj-header">
+          <div>
+            <div class="proj-name">Learning to Recognise Dynamic Visual Content from Broadcast Footage</div>
+            <div class="proj-funder">Research Project</div>
+          </div>
+          <span class="badge badge-gray">Completed</span>
+        </div>
+        <p class="proj-desc">
+          This project tackled the challenge of automatically learning to recognise dynamic activity
+          in broadcast footage, with demonstration activities in both sign language and more general
+          actions and activity. The work developed methods for weakly supervised activity recognition
+          from large-scale broadcast data, bridging the gap between constrained lab settings and
+          real-world video.
         </p>
-        <div class="project-row-meta">
-          <span class="badge badge-gray">Completed 2023</span>
-          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Lena Fischer</span>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code &amp; Dataset</a>
+        <div class="project-tags">
+          <span class="project-tag">Sign Language Recognition</span>
+          <span class="project-tag">Action Recognition</span>
+          <span class="project-tag">Broadcast Footage</span>
+          <span class="project-tag">Weakly Supervised Learning</span>
+        </div>
+        <div class="proj-foot">
+          <div class="funding-strip"></div>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fa-solid fa-file-pdf"></i> Paper</a>
         </div>
       </div>
     </div>
 
-    <div class="project-row">
-      <div class="project-row-thumb project-thumb-sm-b" style="font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">🩺</div>
-      <div class="project-row-info">
-        <div class="project-row-title">Colonoscopy Polyp Detection and Localisation</div>
-        <p class="project-row-desc">
-          Real-time polyp detection with calibrated uncertainty for clinical decision support,
-          achieving sensitivity above 96% on the CVC-ClinicDB benchmark.
+    <!-- Making Sense -->
+    <div class="proj-entry">
+      <div class="proj-accent accent-past"></div>
+      <div class="proj-content">
+        <div class="proj-header">
+          <div>
+            <div class="proj-name">Making Sense</div>
+            <div class="proj-funder">Research Project</div>
+          </div>
+          <span class="badge badge-gray">Completed</span>
+        </div>
+        <p class="proj-desc">
+          Making Sense focused on improving investigative capability through the application of
+          science and technology. The project explored how advanced computer vision and machine
+          learning techniques can be applied to support investigative processes, including the
+          analysis of visual content at scale.
         </p>
-        <div class="project-row-meta">
-          <span class="badge badge-gray">Completed 2023</span>
-          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Omar Hassan</span>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> Paper</a>
+        <div class="project-tags">
+          <span class="project-tag">Visual Intelligence</span>
+          <span class="project-tag">Investigative Capability</span>
+          <span class="project-tag">Computer Vision</span>
+        </div>
+        <div class="proj-foot">
+          <div class="funding-strip"></div>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fa-solid fa-file-pdf"></i> Paper</a>
         </div>
       </div>
     </div>
 
-    <div class="project-row">
-      <div class="project-row-thumb" style="background:linear-gradient(135deg,#3b0764,#9333ea);font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">👁️</div>
-      <div class="project-row-info">
-        <div class="project-row-title">Gaze-Driven Saliency Prediction for UI/UX</div>
-        <p class="project-row-desc">
-          A computational model predicting where users look on screen, enabling
-          automated usability testing and accessibility evaluation of web interfaces.
-        </p>
-        <div class="project-row-meta">
-          <span class="badge badge-gray">Completed 2022</span>
-          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Kevin Liu</span>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
+    <!-- DictaSign -->
+    <div class="proj-entry">
+      <div class="proj-accent accent-past"></div>
+      <div class="proj-content">
+        <div class="proj-header">
+          <div>
+            <div class="proj-name">DictaSign</div>
+            <div class="proj-funder">EU Funded Research Project</div>
+          </div>
+          <span class="badge badge-gray">Completed</span>
         </div>
-      </div>
-    </div>
-
-    <div class="project-row">
-      <div class="project-row-thumb" style="background:linear-gradient(135deg,#1c1917,#78716c);font-size:2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);">🗺️</div>
-      <div class="project-row-info">
-        <div class="project-row-title">Semantic Mapping for Long-Horizon Robot Planning</div>
-        <p class="project-row-desc">
-          Online construction of language-annotated 3D maps that support natural language
-          queries for household robots operating over multi-hour deployments.
+        <p class="proj-desc">
+          DictaSign aimed to enable communication between Deaf individuals by promoting the development
+          of natural human computer interfaces (HCI) for Deaf users. It researched and developed
+          recognition and synthesis systems for sign languages at a level of detail necessary for
+          recognising and generating authentic signing. Research outcomes were integrated into three
+          prototypes: a Search-by-Example tool, a Sign Language-to-Sign Language translator, and a
+          sign Wiki — enabling knowledge-sharing within and across Deaf communities.
         </p>
-        <div class="project-row-meta">
-          <span class="badge badge-gray">Completed 2022</span>
-          <span style="font-size:0.77rem;color:var(--text-muted);">Led by: Dr. Rita Patel</span>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> Paper</a>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
+        <div class="project-tags">
+          <span class="project-tag">SL-to-SL Translation</span>
+          <span class="project-tag">Sign Recognition</span>
+          <span class="project-tag">Sign Synthesis</span>
+          <span class="project-tag">HCI for Deaf</span>
+          <span class="project-tag">Sign Wiki</span>
+          <span class="project-tag">Search-by-Example</span>
+        </div>
+        <div class="proj-foot">
+          <div class="funding-strip">
+            <span class="funding-tag">European Union</span>
+          </div>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fa-solid fa-file-pdf"></i> Paper</a>
         </div>
       </div>
     </div>
@@ -423,7 +401,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo"><span class="cog">Cog</span><span class="vis">Vis</span></div>
-        <p class="footer-desc">Cognitive Vision Research Laboratory<br />Department of Computer Science<br />University of Vision Research</p>
+        <p class="footer-desc">Cognitive Vision Research Laboratory<br />Centre for Vision, Speech and Signal Processing<br />University of Surrey</p>
       </div>
       <div>
         <div class="footer-col-title">Navigate</div>
@@ -431,22 +409,21 @@
           <a href="index.html">Home</a>
           <a href="people.html">People</a>
           <a href="projects.html">Projects</a>
-          <a href="index.html#publications">Publications</a>
+          <a href="publications.html">Publications</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
         <div class="footer-links">
-          <a href="mailto:cogvis@cs.uvr.edu">cogvis@cs.uvr.edu</a>
-          <a href="#">Office: Gates 321</a>
-          <a href="#" target="_blank" rel="noopener">Twitter / X</a>
-          <a href="#" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:r.bowden@surrey.ac.uk">r.bowden@surrey.ac.uk</a>
+          <a href="https://x.com/CogVis" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://github.com/cogvis-cvssp" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 CogVis Lab.</span>
-      <span class="footer-copy">University of Vision Research</span>
+      <span class="footer-copy">© 2026 CogVis Group.</span>
+      <span class="footer-copy">University of Surrey</span>
     </div>
   </div>
 </footer>

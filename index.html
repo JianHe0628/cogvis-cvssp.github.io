@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CogVis Group — Cognitive Vision Research</title>
-  <meta name="description" content="CogVis is a research group working on 3D scene understanding, embodied AI, video intelligence, and medical vision." />
+  <meta name="description" content="CogVis is a research group working on sign language translation, production, spotting, and LLM-driven accessibility." />
   <meta property="og:title" content="CogVis Group" />
-  <meta property="og:description" content="Cognitive Vision Research Laboratory" />
+  <meta property="og:description" content="Sign Language Translation, Production & Spotting — CogVis Group, University of Surrey" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,8 +16,9 @@
 <!-- ========== NAVIGATION ========== -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <span class="cog">Cog</span><span class="vis">Vis</span>
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;">
+      <img src="assets/cogvis.jpg" alt="CogVis logo" style="height:36px;width:auto;">
+      <span><span class="cog">Cog</span><span class="vis">Vis</span></span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -26,7 +27,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="people.html">People</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="#publications">Publications</a></li>
+      <li><a href="publications.html">Publications</a></li>
     </ul>
   </div>
 </nav>
@@ -42,14 +43,14 @@
         Centre for Vision, Speech and Signal Processing &nbsp;·&nbsp; University of Surrey
       </div>
       <h1>
-        Understanding the World<br/>
-        Through <em>Vision &amp; Cognition</em>
+        Making Sign Language<br/>
+        Accessible Through <em>AI &amp; Vision</em>
       </h1>
       <p class="hero-desc">
-        The CogVis Lab develops computational methods that enable machines to
-        perceive, reason about, and interact with the 3D visual world — drawing
-        inspiration from human cognition to build the next generation of
-        embodied visual intelligence.
+        The CogVis Lab develops vision and language models that understand, translate,
+        and produce sign languages — bridging communication between Deaf and hearing
+        communities through gloss-free translation, avatar-driven production, and
+        LLM-powered annotation.
       </p>
       <div class="hero-cta">
         <a href="#research-areas" class="btn btn-primary">
@@ -82,47 +83,47 @@
 </section>
 
 <!-- ========== RESEARCH AREAS ========== -->
-<section class="section" id="research-areas" style="background:#f8f8f8; border-top:1px solid #e0e0e0; border-bottom:1px solid #e0e0e0;">
+<section class="section" id="research-areas" style="background:#f8fafc; border-top:1px solid #e2e8f0; border-bottom:1px solid #e2e8f0;">
   <div class="container">
     <div class="section-header">
       <span class="section-eyebrow">What we do</span>
       <h2 class="section-title">Research Areas</h2>
       <p class="section-desc">
-        We work at the intersection of computer vision, machine learning, and cognitive science
-        to build systems that truly understand the visual world.
+        We work at the intersection of computer vision, natural language processing, and
+        accessibility to build systems that understand and generate sign languages.
       </p>
     </div>
     <div class="area-grid">
       <div class="area-card">
         <div class="area-num">01</div>
-        <div class="area-name">3D Scene Understanding</div>
+        <div class="area-name">Sign Language Translation</div>
         <p class="area-desc">
-          Recovering rich 3D geometric and semantic representations of scenes from
-          images and video, including dynamic scene flow and object permanence.
+          Gloss-free, end-to-end translation of continuous sign language video into
+          spoken language text using visual transformers and large language models.
         </p>
       </div>
       <div class="area-card">
         <div class="area-num">02</div>
-        <div class="area-name">Embodied AI</div>
+        <div class="area-name">Sign Language Production</div>
         <p class="area-desc">
-          Building agents that navigate, reason, and interact in real and simulated 3D
-          environments using language, vision, and affordance grounding.
+          Generating natural, diverse sign language video from spoken text via
+          motion tokenisation, sparse keyframe learning, and photorealistic avatar synthesis.
         </p>
       </div>
       <div class="area-card">
         <div class="area-num">03</div>
-        <div class="area-name">Video Understanding</div>
+        <div class="area-name">Sign Spotting &amp; Recognition</div>
         <p class="area-desc">
-          Long-form temporal reasoning, action recognition, and causal event modeling
-          in unconstrained real-world video streams.
+          Detecting and disambiguating individual signs in unconstrained continuous
+          video, including fingerspelling and rare or out-of-vocabulary signs.
         </p>
       </div>
       <div class="area-card">
         <div class="area-num">04</div>
-        <div class="area-name">Medical Vision</div>
+        <div class="area-name">LLMs &amp; Agentic Methods</div>
         <p class="area-desc">
-          Self-supervised depth estimation and semantic segmentation for surgical and
-          endoscopic imaging, enabling safer clinical procedures.
+          Leveraging agentic large language models for linguistically grounded sign
+          annotation, dataset curation, and multilingual sign language understanding.
         </p>
       </div>
     </div>
@@ -137,124 +138,114 @@
       <h2 class="section-title">Recent Publications</h2>
       <p class="section-desc">
         We publish at top venues in computer vision and machine learning.
-        <a href="https://scholar.google.com" target="_blank" rel="noopener">See all on Google Scholar →</a>
+        <a href="https://scholar.google.com/citations?hl=en&user=mvvgDvcAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener">See all on Google Scholar →</a>
       </p>
     </div>
     <div class="pub-list">
 
       <!-- Paper 1 -->
       <div class="pub-item">
-        <a href="papers/cogscene/" class="pub-thumb" title="CogScene project page">
-          <i class="fa-solid fa-globe" style="font-size:1.4rem;color:#9e9e9e;"></i>
-        </a>
+        <div class="pub-thumb">
+          <i class="fa-solid fa-hands-asl-interpreting" style="font-size:1.4rem;color:#9e9e9e;"></i>
+        </div>
         <div class="pub-body">
           <div class="pub-title">
-            <a href="papers/cogscene/">
-              CogScene: Cognitive-Driven 3D Scene Understanding from Monocular Video
-            </a>
+            Geo-Sign: Hyperbolic Contrastive Regularisation for Geometrically Aware Sign Language Translation
           </div>
           <div class="pub-authors">
-            Sofia Rodriguez, James Chen, <strong>Priya Sharma</strong>, <strong>Alex Morgan</strong>
+            <strong>E Fish</strong>, <strong>R Bowden</strong>
           </div>
           <div class="pub-meta">
-            <span class="venue venue-cvpr">CVPR 2025</span>
-            <span style="color:var(--text-light);font-size:0.8rem;">Oral Presentation</span>
+            <span class="venue venue-neurips">NeurIPS 2025</span>
           </div>
         </div>
         <div class="pub-links">
           <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> PDF</a>
           <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
-          <a href="papers/cogscene/" class="btn btn-outline btn-xs"><i class="fa-solid fa-globe"></i> Page</a>
         </div>
       </div>
 
       <!-- Paper 2 -->
       <div class="pub-item">
         <div class="pub-thumb">
-          <i class="fa-solid fa-robot" style="font-size:1.4rem;color:#9e9e9e;"></i>
+          <i class="fa-solid fa-language" style="font-size:1.4rem;color:#9e9e9e;"></i>
         </div>
         <div class="pub-body">
           <div class="pub-title">
-            LangNav: Zero-Shot Language-Guided Navigation via Semantic Affordances
+            Gloss-Free Sign Language Translation: An Unbiased Evaluation of Progress in the Field
           </div>
           <div class="pub-authors">
-            Marcus Kim, Sofia Rodriguez, <strong>Alex Morgan</strong>
+            <strong>O Mercanoglu Sincan</strong>, <strong>JH Low</strong>, <strong>S Asasi</strong>, <strong>R Bowden</strong>
           </div>
           <div class="pub-meta">
-            <span class="venue venue-neurips">NeurIPS 2024</span>
+            <span class="venue venue-eccv">CVIU 2025</span>
           </div>
         </div>
         <div class="pub-links">
           <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
         </div>
       </div>
 
       <!-- Paper 3 -->
       <div class="pub-item">
         <div class="pub-thumb">
-          <i class="fa-solid fa-film" style="font-size:1.4rem;color:#9e9e9e;"></i>
+          <i class="fa-solid fa-brain" style="font-size:1.4rem;color:#9e9e9e;"></i>
         </div>
         <div class="pub-body">
           <div class="pub-title">
-            TempoBench: A Comprehensive Benchmark for Long-Form Temporal Video Understanding
+            SignAgent: Agentic LLMs for Linguistically-Grounded Sign Language Annotation and Dataset Curation
           </div>
           <div class="pub-authors">
-            Marcus Kim, Yuki Tanaka, <strong>Priya Sharma</strong>, <strong>Alex Morgan</strong>
+            <strong>O Cory</strong>, <strong>OM Sincan</strong>, <strong>R Bowden</strong>
           </div>
           <div class="pub-meta">
-            <span class="venue venue-iccv">ICCV 2024</span>
-            <span style="color:var(--text-light);font-size:0.8rem;">Best Paper Honorable Mention</span>
+            <span class="venue venue-arxiv">arXiv 2026</span>
           </div>
         </div>
         <div class="pub-links">
           <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-database"></i> Dataset</a>
         </div>
       </div>
 
       <!-- Paper 4 -->
       <div class="pub-item">
         <div class="pub-thumb">
-          <i class="fa-solid fa-brain" style="font-size:1.4rem;color:#9e9e9e;"></i>
+          <i class="fa-solid fa-film" style="font-size:1.4rem;color:#9e9e9e;"></i>
         </div>
         <div class="pub-body">
           <div class="pub-title">
-            CogSeg: Cognitive-Inspired Semantic Segmentation via Top-Down Attention Priors
+            M3T: Discrete Multi-Modal Motion Tokens for Sign Language Production
           </div>
           <div class="pub-authors">
-            James Chen, <strong>Alex Morgan</strong>
+            <strong>A Symeonidis-Herzig</strong>, <strong>J Low</strong>, <strong>OM Sincan</strong>, <strong>R Bowden</strong>
           </div>
           <div class="pub-meta">
-            <span class="venue venue-eccv">ECCV 2024</span>
+            <span class="venue venue-arxiv">arXiv 2026</span>
           </div>
         </div>
         <div class="pub-links">
           <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
         </div>
       </div>
 
       <!-- Paper 5 -->
       <div class="pub-item">
         <div class="pub-thumb">
-          <i class="fa-solid fa-microscope" style="font-size:1.4rem;color:#9e9e9e;"></i>
+          <i class="fa-solid fa-bolt" style="font-size:1.4rem;color:#9e9e9e;"></i>
         </div>
         <div class="pub-body">
           <div class="pub-title">
-            MedDepth: Self-Supervised Monocular Depth Estimation for Surgical Endoscopy
+            SignSparK: Efficient Multilingual Sign Language Production via Sparse Keyframe Learning
           </div>
           <div class="pub-authors">
-            Yuki Tanaka, <strong>Priya Sharma</strong>, <strong>Alex Morgan</strong>
+            <strong>J Low</strong>, <strong>A Symeonidis-Herzig</strong>, <strong>M Ivashechkin</strong>, <strong>OM Sincan</strong>, <strong>R Bowden</strong>
           </div>
           <div class="pub-meta">
-            <span class="venue venue-miccai">MICCAI 2024</span>
+            <span class="venue venue-arxiv">arXiv 2026</span>
           </div>
         </div>
         <div class="pub-links">
           <a href="#" class="btn btn-outline btn-xs"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-          <a href="#" class="btn btn-outline btn-xs"><i class="fa-brands fa-github"></i> Code</a>
         </div>
       </div>
 
@@ -271,37 +262,16 @@
     </div>
     <div class="news-list">
       <div class="news-item">
-        <div class="news-date">May 2025</div>
+        <div class="news-date">Mar 2026</div>
         <p class="news-text">
-          <strong>CogScene</strong> was accepted to CVPR 2025 as an <strong>Oral Presentation</strong> (top 3.3% of submissions).
-          <a href="papers/cogscene/">Read more →</a>
+          <strong>Harry Walsh</strong> and <strong>Ryan Wong</strong> has graduated with PhDs! Congratulations to Harry and Ryan on successfully defending their theses and earning their doctorates.
         </p>
       </div>
+    
       <div class="news-item">
-        <div class="news-date">Apr 2025</div>
+        <div class="news-date">Dec 2025</div>
         <p class="news-text">
-          We are looking for motivated <strong>PhD students and postdocs</strong> for Fall 2025.
-          Openings in 3D vision and embodied AI. <a href="people.html">Contact us →</a>
-        </p>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Feb 2025</div>
-        <p class="news-text">
-          <strong>Marcus Kim</strong> received the NSF Graduate Research Fellowship. Congratulations!
-        </p>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Dec 2024</div>
-        <p class="news-text">
-          <strong>TempoBench</strong> received a Best Paper Honorable Mention at ICCV 2024.
-          The dataset and benchmark suite are now <a href="#">publicly available</a>.
-        </p>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Oct 2024</div>
-        <p class="news-text">
-          Dr. <strong>Lena Fischer</strong> (CogVis PhD alumni) joins <strong>Google DeepMind</strong> as a Research Scientist.
-          Congratulations, Lena!
+          <strong>SignGPT</strong> project launched! We are excited to announce the launch of SignGPT, our new initiative focused on leveraging large language models for sign language understanding and generation. Stay tuned for updates on our research and developments in this area.
         </p>
       </div>
     </div>
@@ -328,7 +298,7 @@
           <a href="index.html">Home</a>
           <a href="people.html">People</a>
           <a href="projects.html">Projects</a>
-          <a href="#publications">Publications</a>
+          <a href="publications.html">Publications</a>
         </div>
       </div>
       <div>
