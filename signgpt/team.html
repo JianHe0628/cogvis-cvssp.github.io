@@ -50,6 +50,15 @@
     .recruit-banner i { font-size: 1.4rem; color: var(--indigo); flex-shrink: 0; margin-top: 2px; }
     .recruit-banner p { max-width: none; font-size: 0.9rem; line-height: 1.7; color: var(--indigo-dark); margin-bottom: 0; }
     .recruit-banner p strong { color: var(--indigo-dark); }
+    .nav {
+      background: rgba(10,15,30,.96);
+      border-bottom-color: rgba(255,255,255,.08);
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.4); }
+    .nav-links a { color: rgba(255,255,255,.72); }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.07); }
+    .nav-links a.active { color: #818cf8; background: transparent; }
+    .nav-toggle span { background: rgba(255,255,255,.8); }
   </style>
 </head>
 <body>
@@ -57,8 +66,8 @@
 <!-- ========== NAV ========== -->
 <nav class="nav" role="navigation">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      Sign<span style="color:var(--indigo)">GPT</span>
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:8px;">
+      <img src="../assets/signgpt.png" alt="SignGPT" style="height:36px;width:auto;">
     </a>
     <button class="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
